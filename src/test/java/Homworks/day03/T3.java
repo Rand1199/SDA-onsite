@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
 public class T3 {
 
    static WebDriver driver;
@@ -16,15 +18,11 @@ public class T3 {
 public static void setUp(){
     driver =new ChromeDriver();
     driver.manage().window().maximize();
+    driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     //Go to https://id.heroku.com/login.
     driver.get("https://id.heroku.com/login");
 
 }
-
-
-
-
-
 
     @Test
     public void test(){
@@ -42,7 +40,7 @@ public static void setUp(){
    // There was a problem with your login.
     //If text is visible, print "Registration Failed".
     //If the text is not visible, print "Registered".
-        WebElement errorMessage = driver.findElement(By.className(""));
+        WebElement errorMessage = driver.findElement(By.className("panel-footer"));
         if (errorMessage.isDisplayed()) {
             System.out.println("Registration Failed");
         } else {
