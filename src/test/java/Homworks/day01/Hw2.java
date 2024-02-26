@@ -1,4 +1,4 @@
-package Homworks;
+package Homworks.day01;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

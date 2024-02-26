@@ -26,21 +26,21 @@ public class C02Example {
         createButtons(20);
 
 
+
     }
 
-public void createButtons(int numberOfButtens){
-WebElement button =driver.findElement(By.xpath("//*[.='Add Element']"));
-for (int i=0 ;i<numberOfButtens;i++){
-  button.click();
+public void createButtons(int numberOfButtens) {
+    WebElement button = driver.findElement(By.xpath("//*[.='Add Element']"));
+    for (int i = 0; i < numberOfButtens; i++) {
+        button.click();
 
-}
-    public void deleteButtons(int numberOfButtens1){
-        WebElement button1 =driver.findElement(By.xpath("//*[.='Add Delete']"));
-        for (int i=0 ;i<numberOfButtens1;i++){
-            button.click();
+    }}
+    public void deleteButtons ( int numberOfButtens1){
+        WebElement button1 = driver.findElement(By.xpath("//*[.='Delete']"));
+        for (int i = 0; i < numberOfButtens1; i++) {
+            button1.click();
 
         }
-}
-
+    }
 
 }
