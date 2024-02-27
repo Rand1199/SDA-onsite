@@ -25,7 +25,7 @@ public class C02Example {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(" http://the-internet.herokuapp.com/add_remove_elements/");
         createButtons(20);
-        deleteButtons(driver,20);
+        deleteButtons(20);
 
 
     }
@@ -36,25 +36,28 @@ public void createButtons(int numberOfButtens) {
         button.click();
 
     }}
-   //public void deleteButtons ( int numberOfButtens1){
-   //    WebElement button1 = driver.findElement(By.xpath("//*[.='Delete']"));
-   //    for (int i = 0; i < numberOfButtens1; i++) {
-   //        button1.click();
 
+   //public void deleteButtons( WebDriver driver,int count) {
+
+   //    WebElement deleteButton;
+   //    for (int i = 0; i < count; i++) {
+   //        deleteButton = driver.findElement(By.xpath("//*[.='Delete']"));
+   //        deleteButton.click();
+   //    }
+   //    List<WebElement> buttons = driver.findElements(By.xpath("//*[.='Delete']"));
+   //    if (buttons.isEmpty()) {
+   //        System.out.println("Validation: All buttons deleted successfully!");
+   //    } else {
+   //        System.out.println("Validation: Failed! " + buttons.size() + " buttons remaining.");
    //    }
    //}
-    public void deleteButtons( WebDriver driver,int count) {
 
-        WebElement deleteButton;
-        for (int i = 0; i < count; i++) {
-            deleteButton = driver.findElement(By.xpath("//*[.='Delete']"));
-            deleteButton.click();
-        }
-        List<WebElement> buttons = driver.findElements(By.xpath("//*[.='Delete']"));
-        if (buttons.isEmpty()) {
-            System.out.println("Validation: All buttons deleted successfully!");
-        } else {
-            System.out.println("Validation: Failed! " + buttons.size() + " buttons remaining.");
-        }
+    public void deleteButtons(int numberT){
+        List<WebElement> deleteE = driver.findElements(By.xpath("//*[.='Delete']"));
+
+        for(int i=0;i<numberT;i++){
+        deleteE.get(i).click();}
+
+
     }
 }
