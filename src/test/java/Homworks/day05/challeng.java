@@ -13,34 +13,46 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
 import java.time.Duration;
+import java.util.List;
 
 public class challeng {
 
 
-   static WebDriver driver;
+    WebDriver driver;
 
-   @BeforeClass
-    public static void setUp() {
-       ChromeOptions options = new ChromeOptions();
-       driver = new ChromeDriver(options);
-       driver.get("https://webdriveruniversity.com/To-Do-List/index.html");
-       driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-       //Assert.assertTrue(driver.getTitle().contains("To-Do List"));
-   }
-   @AfterClass
-    public static void tearDown(){
-      // driver.quit();
+    @Test
+    public void test01(){
+        driver = new ChromeDriver();
+        driver.get("https://webdriveruniversity.com/To-Do-List/index.html");
 
-   }
+        String todoText = "test TODO";
+        driver.findElement(By.tagName("input")).sendKeys(todoText + Keys.ENTER);
+        List<WebElement> todoList = driver.findElements(By.xpath("//ul/li"));
 
-   @Test
-    public void test(){
- By textField = RelativeLocator.with(By.xpath("//*[@type='text']"));
-       driver.findElement(textField).sendKeys("Rand"+ Keys.ENTER);
-      // Assert.assertTrue();
+        boolean result = false;
+        for (WebElement w: todoList){
+            if (w.getText().equals(todoText)){
+                result = true;
+            }
+        }
+        Assert.assertTrue(result);
 
-       By deleteField = RelativeLocator.with(By.xpath("//*[@id=\"container\"]/ul/li[4]/span/i"));
-       driver.findElement(deleteField).click();
-//Assert.assertTrue();
-   }
+        driver.findElement(By.xpath("//*[contains(text(), 'test')]/span/i")).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        todoList = driver.findElements(By.xpath("//ul/li"));
+        for (WebElement w: todoList){
+            if (w.getText().equals(todoText)){
+                result = false;
+            }
+        }
+        Assert.assertTrue(result);
+        WebElement completedTODO = driver.findElement(By.xpath("//li[contains(text(), 'Go to potion class')]"));
+        completedTODO.click();
+        result = completedTODO.getAttribute("class").equals("completed");
+        Assert.assertTrue(result);
+    }
 }
