@@ -13,14 +13,13 @@ public class Task01 extends TestBase {
         driver.get("https://facebook.com/");
 
         //Print all the cookies.
-        Set<org.openqa.selenium.Cookie> cookies = driver.manage().getCookies();
-
-
-        for (org.openqa.selenium.Cookie w: cookies){
+        Set<Cookie> cookies=driver.manage().getCookies();
+        for(Cookie w:cookies){
             System.out.println(w);
         }
         //Get Cookie.
-        org.openqa.selenium.Cookie fr = driver.manage().getCookieNamed("fr");
+        System.out.println("------------------------------");
+        Cookie fr = driver.manage().getCookieNamed("fr");
         System.out.println("fr = " + fr);
         System.out.println("------------------------------");
 
@@ -32,7 +31,7 @@ public class Task01 extends TestBase {
         System.out.println("------------------------------");
 
         //Add Cookie.
-        org.openqa.selenium.Cookie newCookie = new org.openqa.selenium.Cookie("animal","cat");
+        Cookie newCookie = new Cookie("animal","cat");
         driver.manage().addCookie(newCookie);
         driver.manage().getCookies().forEach(t-> System.out.println(t));
         System.out.println("------------------------------");
@@ -40,15 +39,16 @@ public class Task01 extends TestBase {
         //Edit Cookie.
 
         //Delete Cookie.
-        driver.manage().deleteCookie(fr);
+        driver.manage().deleteCookie(newCookie);
         driver.manage().deleteCookieNamed("animal");
         driver.manage().getCookies().forEach(System.out::println);
         System.out.println("------------------------------");
 
-
         //Delete All Cookies.
         driver.manage().deleteAllCookies();
         driver.manage().getCookies().forEach(System.out::println);
-        System.out.println("end here...");
+        System.out.println("end here----------------------");
+
+
     }
 }
